@@ -52,7 +52,10 @@ http.interceptors.response.use(
     
     // 根据后端返回的数据结构处理
     if (data.code === 200 || data.code === 0) {
-      return data.data || data
+      if (Object.prototype.hasOwnProperty.call(data, 'data')) {
+        return data.data
+      }
+      return data
     } else if (data.code === 401) {
       // token过期，清除登录信息并跳转到登录页
       clearAuthAndRedirect('登录已过期，请重新登录')

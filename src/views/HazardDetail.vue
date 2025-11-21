@@ -141,7 +141,7 @@
           <van-field
             v-model="rejectReason"
             type="textarea"
-            placeholder="审核不通过时，原因未为必填"
+            placeholder="审核不通过时，原因为必填"
             autosize
             maxlength="200"
             show-word-limit

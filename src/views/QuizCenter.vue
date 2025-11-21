@@ -227,7 +227,6 @@ const loadExamList = async () => {
       PageSize: pageSize.value
     }
     
-    console.log('请求参数:', params)
     
     const {list} = await examApi.getExamList(params)
 
@@ -287,6 +286,7 @@ watch(activeTab, () => {
 const loadCurrentPoints = async () => {
   try {
     const res = await userApi.getScore()
+    console.log('获取积分:', res)
     currentPoints.value = res;
   } catch (error) {
     console.error('获取积分失败:', error)
