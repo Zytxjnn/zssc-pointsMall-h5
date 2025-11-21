@@ -1,0 +1,142 @@
+/* 全局样式重置 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: "PingFang SC", -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* 移动端适配 */
+html {
+  font-size: 16px;
+}
+
+@media screen and (max-width: 320px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media screen and (min-width: 414px) {
+  html {
+    font-size: 18px;
+  }
+}
+
+/* 通用样式 */
+.page {
+  min-height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.container {
+  padding: 0 16px;
+}
+
+.safe-area-bottom {
+  padding-bottom: constant(safe-area-inset-bottom);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* 文本样式 */
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+/* 间距样式 */
+.mt-8 { margin-top: 8px; }
+.mt-16 { margin-top: 16px; }
+.mt-24 { margin-top: 24px; }
+.mb-8 { margin-bottom: 8px; }
+.mb-16 { margin-bottom: 16px; }
+.mb-24 { margin-bottom: 24px; }
+.ml-8 { margin-left: 8px; }
+.ml-16 { margin-left: 16px; }
+.mr-8 { margin-right: 8px; }
+.mr-16 { margin-right: 16px; }
+
+.pt-8 { padding-top: 8px; }
+.pt-16 { padding-top: 16px; }
+.pt-24 { padding-top: 24px; }
+.pb-8 { padding-bottom: 8px; }
+.pb-16 { padding-bottom: 16px; }
+.pb-24 { padding-bottom: 24px; }
+.pl-8 { padding-left: 8px; }
+.pl-16 { padding-left: 16px; }
+.pr-8 { padding-right: 8px; }
+.pr-16 { padding-right: 16px; }
+
+/* 弹性布局 */
+.flex {
+  display: flex;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+
+
+/* Vant CSS变量覆盖 */
+:root {
+  
+  /* Action Sheet 相关变量 */
+  --van-action-sheet-background: #ffffff;
+  --van-action-sheet-header-background: #ffffff;
+  --van-action-sheet-item-background: #ffffff;
+  --van-action-sheet-item-text-color: #323233;
+  --van-action-sheet-header-text-color: #323233;
+  --van-action-sheet-cancel-background: #ffffff;
+  --van-action-sheet-cancel-text-color: #323233;
+  
+  /* 其他常用的Vant变量 */
+  --van-nav-bar-background: #ffffff;
+  --van-nav-bar-title-text-color: #323233;
+  --van-nav-bar-arrow-color: #323233;
+  
+  --van-button-primary-background: #1989fa;
+  --van-button-primary-border-color: #1989fa;
+  
+  --van-toast-background: rgba(0, 0, 0, 0.8);
+  --van-toast-text-color: #ffffff;
+}
+
+
+.van-toast {
+  background-color: rgba(0, 0, 0, 0.8) !important;
+}

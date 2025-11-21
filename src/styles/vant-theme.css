@@ -1,0 +1,178 @@
+/* Vant 主题变量覆盖 */
+:root {
+  /* ===== Popup 弹窗 ===== */
+  --van-popup-background: #f5f5f5;
+  --van-popup-overlay-background: rgba(0, 0, 0, 0.5);
+  --van-popup-close-icon-color: #969799;
+  --van-popup-close-icon-margin: 16px;
+  --van-popup-close-icon-size: 22px;
+  --van-popup-close-icon-z-index: 1;
+
+  /* ===== Action Sheet 动作面板 ===== */
+  --van-action-sheet-background: #ffffff;
+  --van-action-sheet-header-background: #ffffff;
+  --van-action-sheet-header-padding: 16px;
+  --van-action-sheet-header-font-size: 16px;
+  --van-action-sheet-header-font-weight: 500;
+  --van-action-sheet-header-text-color: #323233;
+  --van-action-sheet-item-background: #ffffff;
+  --van-action-sheet-item-text-color: #323233;
+  --van-action-sheet-item-font-size: 16px;
+  --van-action-sheet-item-height: 50px;
+  --van-action-sheet-item-padding: 0 16px;
+  --van-action-sheet-cancel-background: #ffffff;
+  --van-action-sheet-cancel-text-color: #323233;
+  --van-action-sheet-cancel-margin-top: 8px;
+  --van-action-sheet-cancel-padding-top: 16px;
+
+  /* ===== Nav Bar 导航栏 ===== */
+  --van-nav-bar-background: #ffffff;
+  --van-nav-bar-title-text-color: #323233;
+  --van-nav-bar-title-font-size: 16px;
+  --van-nav-bar-title-font-weight: 500;
+  --van-nav-bar-arrow-color: #323233;
+  --van-nav-bar-arrow-size: 18px;
+  --van-nav-bar-height: 46px;
+  --van-nav-bar-padding: 0 16px;
+  --van-nav-bar-z-index: 1;
+
+  /* ===== Button 按钮 ===== */
+  --van-button-primary-background: #1989fa;
+  --van-button-primary-border-color: #1989fa;
+  --van-button-primary-color: #ffffff;
+  --van-button-default-background: #ffffff;
+  --van-button-default-border-color: #ebedf0;
+  --van-button-default-color: #323233;
+  --van-button-danger-background: #ee0a24;
+  --van-button-danger-border-color: #ee0a24;
+  --van-button-danger-color: #ffffff;
+  --van-button-warning-background: #ff976a;
+  --van-button-warning-border-color: #ff976a;
+  --van-button-warning-color: #ffffff;
+  --van-button-info-background: #969799;
+  --van-button-info-border-color: #969799;
+  --van-button-info-color: #ffffff;
+  --van-button-success-background: #07c160;
+  --van-button-success-border-color: #07c160;
+  --van-button-success-color: #ffffff;
+
+  /* ===== Toast 轻提示 ===== */
+  --van-toast-background: rgba(0, 0, 0, 0.8);
+  --van-toast-text-color: #ffffff;
+  --van-toast-font-size: 14px;
+  --van-toast-line-height: 20px;
+  --van-toast-border-radius: 4px;
+  --van-toast-padding: 8px 12px;
+  --van-toast-min-width: 96px;
+  --van-toast-max-width: 70%;
+  --van-toast-z-index: 2000;
+
+  /* ===== Dialog 弹出层 ===== */
+  --van-dialog-background: #ffffff;
+  --van-dialog-border-radius: 8px;
+  --van-dialog-header-padding: 20px 20px 0;
+  --van-dialog-header-font-size: 18px;
+  --van-dialog-header-font-weight: 500;
+  --van-dialog-header-text-color: #323233;
+  --van-dialog-content-padding: 20px;
+  --van-dialog-content-font-size: 16px;
+  --van-dialog-content-text-color: #646566;
+  --van-dialog-footer-padding: 0 20px 20px;
+  --van-dialog-z-index: 2000;
+
+  /* ===== Field 输入框 ===== */
+  --van-field-label-color: #323233;
+  --van-field-label-width: 6.2em;
+  --van-field-label-margin-right: 12px;
+  --van-field-input-text-color: #323233;
+  --van-field-input-disabled-text-color: #c8c9cc;
+  --van-field-placeholder-text-color: #c8c9cc;
+  --van-field-icon-size: 16px;
+  --van-field-clear-icon-size: 16px;
+  --van-field-clear-icon-color: #c8c9cc;
+  --van-field-right-icon-color: #c8c9cc;
+  --van-field-error-message-color: #ee0a24;
+  --van-field-error-message-font-size: 12px;
+  --van-field-text-area-min-height: 60px;
+  --van-field-word-limit-color: #c8c9cc;
+  --van-field-word-limit-font-size: 12px;
+  --van-field-word-limit-line-height: 16px;
+  --van-field-disabled-text-color: #c8c9cc;
+  --van-field-required-mark-color: #ee0a24;
+
+  /* ===== Cell 单元格 ===== */
+  --van-cell-background: #ffffff;
+  --van-cell-text-color: #323233;
+  --van-cell-border-color: #ebedf0;
+  --van-cell-active-color: #f2f3f5;
+  --van-cell-required-color: #ee0a24;
+  --van-cell-label-color: #969799;
+  --van-cell-label-font-size: 12px;
+  --van-cell-label-line-height: 18px;
+  --van-cell-label-margin-top: 3px;
+  --van-cell-value-color: #969799;
+  --van-cell-icon-color: #969799;
+  --van-cell-right-icon-color: #c8c9cc;
+  --van-cell-large-vertical-padding: 12px;
+  --van-cell-large-title-font-size: 16px;
+  --van-cell-large-label-font-size: 14px;
+
+  /* ===== Tab 标签页 ===== */
+  --van-tab-text-color: #646566;
+  --van-tab-active-text-color: #1989fa;
+  --van-tab-disabled-text-color: #c8c9cc;
+  --van-tab-font-size: 14px;
+  --van-tab-line-height: 20px;
+  --van-tab-padding: 0 4px;
+  --van-tabs-default-color: #1989fa;
+  --van-tabs-line-height: 44px;
+  --van-tabs-card-height: 30px;
+  --van-tabs-bottom-bar-width: 40px;
+  --van-tabs-bottom-bar-height: 3px;
+  --van-tabs-bottom-bar-color: #1989fa;
+
+  /* ===== Loading 加载 ===== */
+  --van-loading-text-color: #969799;
+  --van-loading-text-font-size: 14px;
+  --van-loading-spinner-color: #1989fa;
+  --van-loading-spinner-size: 30px;
+  --van-loading-spinner-animation-duration: 0.8s;
+
+  /* ===== Overlay 遮罩层 ===== */
+  --van-overlay-background: rgba(0, 0, 0, 0.5);
+  --van-overlay-z-index: 1;
+
+  /* ===== Picker 选择器 ===== */
+  --van-picker-background: #ffffff;
+  --van-picker-toolbar-height: 44px;
+  --van-picker-title-font-size: 16px;
+  --van-picker-title-line-height: 20px;
+  --van-picker-action-padding: 0 16px;
+  --van-picker-action-font-size: 16px;
+  --van-picker-confirm-action-color: #1989fa;
+  --van-picker-cancel-action-color: #969799;
+  --van-picker-option-text-color: #323233;
+  --van-picker-option-disabled-opacity: 0.3;
+  --van-picker-loading-icon-color: #1989fa;
+  --van-picker-mask-color: linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.4)), linear-gradient(0deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.4));
+  --van-picker-mask-color-top: rgba(255, 255, 255, 0.9);
+  --van-picker-mask-color-bottom: rgba(255, 255, 255, 0.4);
+  --van-picker-loading-mask-color: rgba(255, 255, 255, 0.9);
+}
+
+/* 深色主题支持 */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* 可以根据需要添加深色主题的变量 */
+    --van-popup-background: #1a1a1a;
+    --van-action-sheet-background: #1a1a1a;
+    --van-action-sheet-header-background: #1a1a1a;
+    --van-action-sheet-item-background: #1a1a1a;
+    --van-action-sheet-item-text-color: #ffffff;
+    --van-action-sheet-header-text-color: #ffffff;
+    --van-action-sheet-cancel-background: #1a1a1a;
+    --van-action-sheet-cancel-text-color: #ffffff;
+  }
+}
+
+

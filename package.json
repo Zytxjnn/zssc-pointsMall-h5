@@ -1,0 +1,33 @@
+{
+  "name": "cloud-points-mall",
+  "version": "1.0.0",
+  "description": "云积分超市 - Vue3 + Pinia + Vant4",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "dev:debug": "vite --mode development --debug",
+    "build": "vite build",
+    "build:debug": "vite build --mode development",
+    "preview": "vite preview",
+    "preview:debug": "vite preview --mode development"
+  },
+  "dependencies": {
+    "axios": "^1.12.2",
+    "jsqr": "^1.4.0",
+    "pinia": "^2.1.7",
+    "tcplayer.js": "^5.3.4",
+    "vant": "^4.8.0",
+    "vue": "^3.4.0",
+    "vue-router": "^4.2.5"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.5.0",
+    "postcss": "^8.4.32",
+    "postcss-px-to-viewport": "^1.1.1",
+    "prettier": "^3.1.0",
+    "sass": "^1.93.2",
+    "unplugin-auto-import": "^0.17.0",
+    "unplugin-vue-components": "^0.26.0",
+    "vite": "^5.0.0"
+  }
+}
