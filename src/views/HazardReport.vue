@@ -374,7 +374,7 @@ const onAddImage = () => {
   input.type = 'file'
   input.accept = 'image/*'
   // 在多数移动端浏览器上可拉起相机
-  input.capture = 'environment'
+  // input.capture = 'environment'
   input.multiple = remain > 1
 
   input.onchange = (e) => {

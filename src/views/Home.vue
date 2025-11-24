@@ -187,9 +187,12 @@ import { useRouter } from 'vue-router'
 import { showToast } from 'vant'
 import TabBar from '@/components/TabBar.vue'
 import { homeApi } from '@/api'
+import { useUserStore } from '@/stores/user'
 import jsQR from 'jsqr'
 
 const router = useRouter()
+const userStore = useUserStore()
+const laborerStatus = computed(() => userStore.userInfo?.laborerStatus ?? 1)
 
 // 标签页状态
 const activeTab = ref('points')
@@ -218,6 +221,10 @@ const pendingCount = computed(() => actionList.value.length + approvalList.value
     
     // 隐患上报跳转
     if (type === 'hazard') {
+      if (laborerStatus.value === 0) {
+        showToast('账号待审核，请联系管理员')
+        return
+      }
       router.push('/hazard-report')
       return
     }

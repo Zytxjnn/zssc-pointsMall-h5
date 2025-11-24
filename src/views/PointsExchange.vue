@@ -168,9 +168,11 @@ const confirmExchange = () => {
   justify-content: space-between;
   background: #1961AC;
   padding: 8px 16px;
-  margin-bottom: 8px;
   color: #fff;
   font-size: 16px;
+  position: sticky;
+  top: 40px;
+  z-index: 900;
 
   .cabinet-title {
     margin: 0;
