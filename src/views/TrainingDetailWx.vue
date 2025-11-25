@@ -1,6 +1,5 @@
 <template>
-
-  <div class="training-detail">
+<div class="training-detail">
     <!-- 页面标题栏 -->
     <xjnn-nav-bar title="培训内容" />
 
@@ -84,18 +83,7 @@ import { request } from '@/utils/http'
 
 const router = useRouter()
 const route = useRoute()
-const token = ref(typeof route.query.token === 'string' ? route.query.token : '')
-
-const getAuthConfig = () => {
-  if (!token.value) {
-    return {}
-  }
-  return {
-    headers: {
-      Authorization: `Bearer ${token.value}`
-    }
-  }
-}
+const identityToken = ref(typeof route.query.identity_token === 'string' ? route.query.identity_token : '')
 
 // 培训数据
 const training = ref({
@@ -143,7 +131,7 @@ const loadTraining = async () => {
     router.back()
     return
   }
-  if (!token.value) {
+  if (!identityToken.value) {
     showToast('缺少访问凭证')
     return
   }
@@ -152,7 +140,11 @@ const loadTraining = async () => {
   
   try {
     // 调用API获取培训详情
-    const response = await request.get('/Training/Get', { id: trainingId }, getAuthConfig())
+    const response = await request.get(
+      '/Training/Get',
+      { id: trainingId, identity_token: identityToken.value },
+      { skipAuthRedirect: true }
+    )
     
     // 映射API响应数据到组件数据
     training.value = {
@@ -185,8 +177,6 @@ const loadTraining = async () => {
       fileID: response.vodFileId,
       psign: response.playerSign,
       licenseUrl: response.vodLicenseUrl,
-      width: '400px',
-      height: '176px'
     })
 
     // 只有未完成的培训才监听播放器事件进行时长统计
@@ -197,7 +187,11 @@ const loadTraining = async () => {
     }
   } catch (error) {
     console.error('获取培训详情失败:', error)
-    showToast('获取培训详情失败')
+    if (isIdentityUnauthorized(error)) {
+      handleIdentityUnauthorized()
+    } else {
+      showToast('获取培训详情失败')
+    }
   } finally {
     loading.value = false
   }
@@ -359,19 +353,14 @@ const submitTraining = async () => {
     
     console.log(`开始提交培训，观看时长: ${watchMinutes} 分钟`)
     
-    // 调用提交培训接口
-    if (!token.value) {
-      showToast('缺少访问凭证')
-      return
-    }
-    
     await request.post(
       '/Training/Submit',
       {
         id: training.value.id,
-        viewMinutes: Number(watchMinutes)
+        viewMinutes: Number(watchMinutes),
+        identity_token: identityToken.value
       },
-      getAuthConfig()
+      { skipAuthRedirect: true }
     )
     
     console.log('培训提交成功')
@@ -383,12 +372,24 @@ const submitTraining = async () => {
     
   } catch (error) {
     console.error('提交培训失败:', error)
-    showToast('提交培训失败')
-    // 提交失败后也标记为已提交，防止重复请求
-    isSubmitted.value = true
+    if (isIdentityUnauthorized(error)) {
+      handleIdentityUnauthorized()
+    } else {
+      showToast('提交培训失败')
+      // 提交失败后也标记为已提交，防止重复请求
+      isSubmitted.value = true
+    }
   } finally {
     isSubmitting.value = false
   }
+}
+
+const isIdentityUnauthorized = (error) => {
+  return error?.code === 401 || error?.response?.status === 401
+}
+
+const handleIdentityUnauthorized = () => {
+  showToast('身份凭证无效，请获取新凭证')
 }
 
 // 开始学习
@@ -478,7 +479,6 @@ onUnmounted(() => {
 .video-player-container {
   width: 100%;
   background: #000;
-  padding: 16px;
   
   .video-element {
     width: 100%;
@@ -688,6 +688,11 @@ onUnmounted(() => {
       color: $text-tertiary;
     }
   }
+}
+
+#videoPlayer {
+  width: 100%;
+  height: 170px;
 }
 
 // Vant组件样式覆盖

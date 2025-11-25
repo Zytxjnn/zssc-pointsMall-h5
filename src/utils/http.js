@@ -20,8 +20,12 @@ http.interceptors.request.use(
     console.log('发送请求:', config)
     
     // 添加token到请求头
+    const hasCustomAuth = config.headers && config.headers.Authorization
     const token = localStorage.getItem('token')
-    if (token) {
+    if (!hasCustomAuth && token) {
+      if (!config.headers) {
+        config.headers = {}
+      }
       config.headers.Authorization = `Bearer ${token}`
     }
     
@@ -57,6 +61,12 @@ http.interceptors.response.use(
       }
       return data
     } else if (data.code === 401) {
+      if (response.config?.skipAuthRedirect) {
+        const unauthorizedError = new Error(data.message || '未授权')
+        unauthorizedError.code = 401
+        unauthorizedError.response = response
+        return Promise.reject(unauthorizedError)
+      }
       // token过期，清除登录信息并跳转到登录页
       clearAuthAndRedirect('登录已过期，请重新登录')
       return Promise.reject(new Error(data.message || '登录已过期'))
@@ -72,6 +82,8 @@ http.interceptors.response.use(
     
     let message = '网络错误，请稍后重试'
     
+    const skipAuthRedirect = error.config?.skipAuthRedirect
+
     if (error.response) {
       // 服务器返回了错误状态码
       const { status, data } = error.response
@@ -82,6 +94,9 @@ http.interceptors.response.use(
           break
         case 401:
           message = '未授权，请重新登录'
+          if (skipAuthRedirect) {
+            return Promise.reject(error)
+          }
           clearAuthAndRedirect(message)
           break
         case 403:
