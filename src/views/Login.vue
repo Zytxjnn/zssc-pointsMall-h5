@@ -57,7 +57,9 @@
           <van-checkbox v-model="agreed" shape="square" />
           <span class="agreement-text">
             我已阅读并同意
-            <span class="agreement-link">《用户协议》</span>
+            <span class="agreement-link" @click.stop="goToUserAgreement">《用户协议》</span>
+            和
+            <span class="agreement-link" @click.stop="goToPrivacyPolicy">《隐私政策》</span>
           </span>
         </div>
 
@@ -124,6 +126,28 @@ const passwordRules = [
 // 去注册
 const goToRegister = () => {
   router.push('/register')
+}
+
+// 跳转到用户协议页面
+const goToUserAgreement = (e) => {
+  if (e) {
+    e.preventDefault()
+    e.stopPropagation()
+  }
+  router.push('/user-agreement').catch(err => {
+    console.error('路由跳转失败:', err)
+  })
+}
+
+// 跳转到隐私政策页面
+const goToPrivacyPolicy = (e) => {
+  if (e) {
+    e.preventDefault()
+    e.stopPropagation()
+  }
+  router.push('/privacy-policy').catch(err => {
+    console.error('路由跳转失败:', err)
+  })
 }
 
 // 表单提交

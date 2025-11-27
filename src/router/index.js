@@ -185,6 +185,22 @@ const routes = [
     meta: {
       title: '关于我们'
     }
+  },
+  {
+    path: '/user-agreement',
+    name: 'UserAgreement',
+    component: () => import('@/views/UserAgreement.vue'),
+    meta: {
+      title: '用户服务协议'
+    }
+  },
+  {
+    path: '/privacy-policy',
+    name: 'PrivacyPolicy',
+    component: () => import('@/views/PrivacyPolicy.vue'),
+    meta: {
+      title: '隐私政策'
+    }
   }
 ]
 
@@ -205,7 +221,8 @@ router.beforeEach((to, from, next) => {
   
   const userStore = useUserStore()
 
-  const allowAnonymous = to.name === 'TrainingDetailWx'
+  // 允许匿名访问的页面
+  const allowAnonymous = to.name === 'TrainingDetailWx' || to.name === 'UserAgreement' || to.name === 'PrivacyPolicy'
 
   if (!isLoginPage && !allowAnonymous && !userStore.isLogin) {
     // 检查本地存储中是否有token
