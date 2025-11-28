@@ -220,7 +220,6 @@
 .policy-content {
   padding: 16px;
   background: $white;
-  margin: 8px;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }

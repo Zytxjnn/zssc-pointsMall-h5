@@ -357,10 +357,14 @@ const submitTraining = async () => {
       '/Training/Submit',
       {
         id: training.value.id,
-        viewMinutes: Number(watchMinutes),
-        identity_token: identityToken.value
+        viewMinutes: Number(watchMinutes)
       },
-      { skipAuthRedirect: true }
+      {
+        params: {
+          identity_token: identityToken.value
+        },
+        skipAuthRedirect: true
+      }
     )
     
     console.log('培训提交成功')
