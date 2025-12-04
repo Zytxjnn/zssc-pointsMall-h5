@@ -15,13 +15,6 @@
         <van-button type="primary" size="small" class="search-btn" @click="onSearch">搜索</van-button>
       </div>
 
-      <div class="filter-row">
-        <van-dropdown-menu>
-          <van-dropdown-item v-model="selectedCompany" :options="companyOptions" />
-          <van-dropdown-item v-model="selectedCrew" :options="crewOptions" />
-        </van-dropdown-menu>
-      </div>
-
       <div class="list">
         <div
           v-for="p in peopleList"
@@ -36,8 +29,8 @@
               <van-icon v-if="p.id === selectedId" name="success" color="#1989fa" />
             </div>
             <div class="meta">
-              <span class="company">{{ p.companyName || '-' }}</span>
-              <span class="phone">{{ p.mobilePhone || '-' }}</span>
+              <span class="dept">{{ p.deptName || '-' }}</span>
+              <span class="phone">{{ p.phoneNo || '-' }}</span>
             </div>
           </div>
         </div>
@@ -52,12 +45,13 @@
 </template>
 
 <script setup>
-import { ref, computed, watch } from 'vue'
-import { userApi } from '@/api'
+import { ref, watch } from 'vue'
+import { riskApi } from '@/api'
 
 const props = defineProps({
   show: { type: Boolean, default: false },
-  title: { type: String, default: '选择人员' }
+  title: { type: String, default: '选择人员' },
+  type: { type: String, default: 'actionOwner', validator: (value) => ['actionOwner', 'approver'].includes(value) }
 })
 
 const emit = defineEmits(['update:show', 'confirm', 'cancel'])
@@ -66,77 +60,36 @@ const visible = ref(props.show)
 watch(() => props.show, v => {
   visible.value = v
   if (v) {
-    // 弹窗打开时加载数据
-    loadCompanyList()
+    // 弹窗打开时重置状态并加载数据
+    keyword.value = ''
+    selectedId.value = null
     loadUserList()
   }
 })
 watch(visible, v => emit('update:show', v))
 
 const keyword = ref('')
-const selectedCompany = ref('')
-const selectedCrew = ref('')
 const selectedId = ref(null)
 const peopleList = ref([])
-const companyList = ref([])
-const crewList = ref([])
 const loading = ref(false)
-
-const companyOptions = computed(() => [{ text: '选择单位(全部)', value: '' }, ...companyList.value])
-const crewOptions = computed(() => [{ text: '选择班组(全部)', value: '' }, ...crewList.value])
-
-// 加载单位列表
-const loadCompanyList = async () => {
-  try {
-    const res = await userApi.getCompanyList()
-    
-    companyList.value = (res || []).map(item => ({
-      text: item.name,
-      value: item.id
-    }))
-    console.log(`加载了${companyList.value.length}个单位`)
-  } catch (error) {
-    console.error('获取单位列表失败:', error)
-    companyList.value = []
-  }
-}
-
-// 加载班组列表
-const loadCrewList = async (companyId) => {
-  // 如果没有选择单位，清空班组列表
-  if (!companyId) {
-    crewList.value = []
-    selectedCrew.value = ''
-    return
-  }
-  
-  try {
-    const res = await userApi.getCrewList({ companyId })
-    
-    crewList.value = (res || []).map(item => ({
-      text: item.name,
-      value: item.id
-    }))
-    console.log(`加载了${crewList.value.length}个班组`)
-  } catch (error) {
-    console.error('获取班组列表失败:', error)
-    crewList.value = []
-  }
-}
 
 // 加载用户列表
 const loadUserList = async () => {
   loading.value = true
   try {
-    const { list } = await userApi.getUserList({
-      UserName: keyword.value || undefined,
-      CompanyId: selectedCompany.value || undefined,
-      CrewId: selectedCrew.value || undefined,
-      CurrentPageIndex: 0,
-      PageSize: 1000
-    })
-
-    peopleList.value = list || []
+    const params = {}
+    if (keyword.value) {
+      params.UserName = keyword.value
+    }
+    
+    // 根据 type 调用不同的接口
+    const apiMethod = props.type === 'approver' ? riskApi.getApproverList : riskApi.getActionOwnerList
+    const res = await apiMethod(params)
+    
+    // 接口返回格式：{success: true, code: 0, message: "string", data: [...]}
+    // 由于 http.js 拦截器会返回 data.data，所以这里 res 应该直接是数组
+    // 但为了兼容，同时检查 res 是否为数组或 res.data 是否为数组
+    peopleList.value = Array.isArray(res) ? res : (res?.data || [])
     console.log(`加载了${peopleList.value.length}条用户数据`)
   } catch (error) {
     console.error('获取用户列表失败:', error)
@@ -151,20 +104,6 @@ const onSearch = () => {
   loadUserList()
 }
 
-// 监听单位变化，加载对应的班组
-watch(selectedCompany, (newCompanyId) => {
-  // 切换单位时，清空班组选中
-  selectedCrew.value = ''
-  // 加载新单位的班组列表
-  loadCrewList(newCompanyId)
-  // 重新加载用户列表
-  loadUserList()
-})
-
-// 监听班组变化，重新加载用户
-watch(selectedCrew, () => {
-  loadUserList()
-})
 
 const onCancel = () => {
   visible.value = false
@@ -204,7 +143,6 @@ const onConfirm = () => {
   .search-btn { width: 72px; }
 }
 
-.filter-row { padding: 0 6px 6px; }
 
 .list {
   flex: 1;
@@ -225,7 +163,7 @@ const onConfirm = () => {
       color: $primary-color !important;
     }
     .meta {
-      .company {
+      .dept {
         color: $primary-color !important;
       }
       .phone {
@@ -263,7 +201,7 @@ const onConfirm = () => {
     font-size: 12px;
     color: $text-secondary;
 
-    .company {
+    .dept {
       max-width: 140px;
       overflow: hidden;
       text-overflow: ellipsis;

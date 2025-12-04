@@ -27,10 +27,6 @@ export const userApi = {
   changePassword(data) {
     return request.post('/user/change-password', data)
   },
-  // 用户列表
-  getUserList(params) {
-    return request.get('/User/GetList', params)
-  },
   // 单位列表
   getCompanyList(params) {
     return request.get('/User/GetCompanyDropDownList', params)
@@ -149,6 +145,14 @@ export const riskApi = {
   // 复核整改成果
   doAudit(data) {
     return request.post('/Risk/Audit', data)
+  },
+  // 获取整改人列表
+  getActionOwnerList(params) {
+    return request.get('/Risk/GetActionOwnerList', params)
+  },
+  // 获取复核人列表
+  getApproverList(params) {
+    return request.get('/Risk/GetApproverList', params)
   }
 }
 

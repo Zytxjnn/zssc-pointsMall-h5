@@ -222,12 +222,14 @@
     <PersonSelector
       v-model:show="showRectifierSelector"
       title="选择整改人员"
+      type="actionOwner"
       @confirm="onRectifierSelected"
     />
 
     <PersonSelector
       v-model:show="showReviewerSelector"
       title="选择复核人员"
+      type="approver"
       @confirm="onReviewerSelected"
     />
   </div>
