@@ -628,7 +628,8 @@ const onCancel = async () => {
 const onSubmit = async () => {
   await showConfirmDialog({
       title: '确认提交',
-      message: '确定要提交隐患上报吗？'
+      message: '确定要提交隐患上报吗？',
+      width: '70%'
     })
   // 验证必填字段
   if (!hazardForm.primaryType) {
@@ -682,16 +683,28 @@ const onSubmit = async () => {
       duration: 0
     })
     
-    // 调用API提交数据
-    await riskApi.reportHazard(submitData)
-    
-    closeToast()
-    showToast('提交成功！')
-    
-    // 延迟跳转回首页
-    setTimeout(() => {
-      router.push('/')
-    }, 1500)
+    try {
+      // 调用API提交数据
+      await riskApi.reportHazard(submitData)
+      
+      closeToast()
+      showToast('提交成功！')
+      
+      // 延迟跳转回首页
+      setTimeout(() => {
+        router.push('/')
+      }, 500)
+    } catch (error) {
+      closeToast()
+      // 显示错误消息
+      // 错误消息可能来自：
+      // 1. error.message - 后端返回 {code: 400, message: "..."} 时，http拦截器会将message放到error.message
+      // 2. error.response?.data?.message - HTTP状态码错误时的错误消息
+      const errorMessage = error.message || error.response?.data?.message || '提交失败，请重试'
+      showToast(errorMessage)
+      console.error('隐患上报失败:', error)
+      // 错误时不跳转，让用户看到错误信息并可以修正后重新提交
+    }
 }
 </script>
 

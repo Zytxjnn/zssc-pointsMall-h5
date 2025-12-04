@@ -563,7 +563,6 @@ onMounted(() => {
 
 .section {
   background: #fff;
-  border-radius: $border-radius;
   margin-bottom: 16px;
   overflow: hidden;
 }
@@ -576,24 +575,13 @@ onMounted(() => {
   border-bottom: 1px solid $border-color-light;
   position: relative;
   
-  &::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 4px;
-    height: 16px;
-    background: $primary-color;
-    border-radius: 2px;
-  }
+
 }
 
 .section-title {
   font-size: 16px;
   font-weight: 500;
   color: $text-color-primary;
-  margin-left: 12px;
 }
 
 .status-tag {
@@ -773,15 +761,12 @@ onMounted(() => {
 
 // 整改和复核记录样式
 .workflow-section {
-  padding: 16px;
-  
   .workflow-item {
     margin-bottom: 16px;
   }
   
   .workflow-card {
-    background: #F9F9FA;
-    border-radius: 8px;
+    background: #fff;
     margin-bottom: 12px;
     overflow: hidden;
     
@@ -791,22 +776,9 @@ onMounted(() => {
       
       .card-title {
         font-size: 16px;
-        font-weight: 600;
         color: $text-color-primary;
         position: relative;
-        padding-left: 12px;
         
-        &::before {
-          content: '';
-          position: absolute;
-          left: 0;
-          top: 50%;
-          transform: translateY(-50%);
-          width: 4px;
-          height: 16px;
-          background: $primary-color;
-          border-radius: 2px;
-        }
       }
     }
     

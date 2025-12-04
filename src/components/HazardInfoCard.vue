@@ -95,19 +95,9 @@ const preview = (index) => {
   padding: 16px;
   border-bottom: 1px solid $border-color-light;
   position: relative;
-  &::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 4px;
-    height: 16px;
-    background: $primary-color;
-    border-radius: 2px;
-  }
+
 }
-.section-title { font-size: 16px; font-weight: 500; color: $text-color-primary; margin-left: 12px; }
+.section-title { font-size: 16px; font-weight: 500; color: $text-color-primary; }
 .section-subtitle { padding: 16px; font-size: 14px; color: $text-color-primary; }
 .status-tag { padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: 500; }
 .status-tag.status-pending { background: #FFF3EF; color: #D9402B; }

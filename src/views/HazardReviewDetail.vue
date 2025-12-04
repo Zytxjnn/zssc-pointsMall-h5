@@ -262,8 +262,7 @@ const getTitle = (entry) => {
 
 .section { background: #fff; border-radius: $border-radius; margin-bottom: 16px; overflow: hidden; }
 .section-header { display: flex; align-items: center; justify-content: space-between; padding: 16px; border-bottom: 1px solid $border-color-light; position: relative; }
-.section-header::before { content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 4px; height: 16px; background: $primary-color; border-radius: 2px; }
-.section-title { font-size: 16px; font-weight: 500; color: $text-color-primary; margin-left: 12px; }
+.section-title { font-size: 16px; font-weight: 500; color: $text-color-primary; }
 .info-list { padding: 16px; }
 .info-item { display: flex; margin-bottom: 12px; }
 .label { font-size: 14px; color: $text-color-secondary; min-width: 80px; flex-shrink: 0; }
