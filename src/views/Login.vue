@@ -102,7 +102,7 @@ watch(
 
 // 表单数据
 const form = reactive({
-  mobilePhone: '17382022624',
+  mobilePhone: '',
   // mobilePhone: '',
   password: ''
 })

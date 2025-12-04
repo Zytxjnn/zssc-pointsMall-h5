@@ -34,14 +34,15 @@ const routes = [
       title: '个人中心'
     }
   },
-  {
-    path: '/settings',
-    name: 'Settings',
-    component: () => import('@/views/Settings.vue'),
-    meta: {
-      title: '设置'
-    }
-  },
+  // 暂时隐藏设置页面
+  // {
+  //   path: '/settings',
+  //   name: 'Settings',
+  //   component: () => import('@/views/Settings.vue'),
+  //   meta: {
+  //     title: '设置'
+  //   }
+  // },
   {
     path: '/exchange-record',
     name: 'ExchangeRecord',

@@ -21,9 +21,10 @@
           <div class="user-phone">{{ userInfo.mobilePhone }}</div>
           <div class="user-company">{{ userInfo.companyName }}</div>
         </div>
-        <div class="user-arrow">
+        <!-- 暂时隐藏箭头（设置页面已隐藏） -->
+        <!-- <div class="user-arrow">
           <van-icon name="arrow" />
-        </div>
+        </div> -->
       </div>
       <!-- 积分显示区域 -->
       <div class="points-section">
@@ -92,9 +93,9 @@ onMounted(async () => {
   userInfo.value = res;
 })  
 
-// 用户卡片点击 - 跳转到设置页面
+// 用户卡片点击 - 跳转到设置页面（暂时隐藏）
 const onUserCardClick = () => {
-  router.push('/settings')
+  // router.push('/settings')  // 暂时隐藏设置页面
 }
 
 // 菜单点击
