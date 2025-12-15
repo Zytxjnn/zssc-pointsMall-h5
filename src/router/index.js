@@ -67,6 +67,31 @@ const routes = [
       title: '积分兑换'
     }
   },
+  // 备用货柜/兑换（供应商切换）
+  {
+    path: '/weimi-points-exchange',
+    name: 'WeimiPointsExchange',
+    component: () => import('@/views/WeimiPointsExchange.vue'),
+    meta: {
+      title: '积分兑换'
+    }
+  },
+  {
+    path: '/weimi-product-detail/:id',
+    name: 'WeimiProductDetail',
+    component: () => import('@/views/WeimiProductDetail.vue'),
+    meta: {
+      title: '商品详情'
+    }
+  },
+  {
+    path: '/weimi-exchange-result',
+    name: 'WeimiExchangeResult',
+    component: () => import('@/views/WeimiExchangeResult.vue'),
+    meta: {
+      title: '兑换结果'
+    }
+  },
   {
     path: '/product-detail/:id',
     name: 'ProductDetail',

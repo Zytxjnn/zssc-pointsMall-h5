@@ -1,12 +1,11 @@
 // 应用配置
 // 根据环境变量设置不同的API端口
 const isDev = import.meta.env.MODE === 'development'
-const API_PORT = isDev ? '9067' : '9067'
-// const API_PORT = isDev ? '9066' : '9067'
+const API_PORT = '9067'
 
 export const config = {
   // API基础URL
-  apiBaseURL: `http://111.230.70.133:${API_PORT}/api`,
+  apiBaseURL: `https://psapi.yiqiantu.com/api`,
   
   // 请求超时时间
   timeout: 10000,

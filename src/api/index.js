@@ -97,6 +97,30 @@ export const pointsApi = {
   }
 }
 
+// Weimi 货柜/兑换相关API
+export const weimiPointsApi = {
+  // 获取货柜信息
+  getScoreRedeem(params) {
+    return request.get('/WeimiScoreRedeem/Get', params)
+  },
+  // 获取货道详情
+  getAisleDetail(params) {
+    return request.get('/WeimiScoreRedeem/GetAisle', params)
+  },
+  // 发起兑换，返回流水号
+  redeem(data) {
+    return request.post('/WeimiScoreRedeem/Redeem', data)
+  },
+  // 查询兑换状态
+  getRedeemStatus(params) {
+    return request.get('/WeimiScoreRedeem/GetRedeemStatus', params)
+  },
+  // 结果通知（前端通常无需调用，预留）
+  notifyResult(data) {
+    return request.post('/WeimiScoreRedeem/NotifyResult', data)
+  }
+}
+
 // 危险源相关API
 export const riskApi = {
   // 获取隐患一级类型
@@ -232,6 +256,7 @@ export const examApi = {
 export default {
   userApi,
   pointsApi,
+  weimiPointsApi,
   riskApi,
   trainingApi,
   uploadApi,

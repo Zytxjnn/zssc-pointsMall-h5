@@ -272,15 +272,18 @@ const handleScanResult = (result) => {
   }
   
   // 判断是否是绝对URL
-  if (result.startsWith('http://') || result.startsWith('https://')) {
-    showToast('识别成功，正在跳转...')
-    // 跳转到绝对URL
-    window.location.href = result
-  } else {
-    // 如果不是URL，可能是其他数据
-    showToast('扫码成功')
-    console.log('扫码数据:', result)
-  }
+  // if (result.startsWith('http://') || result.startsWith('https://')) {
+  //   showToast('识别成功，正在跳转...')
+  //   // 跳转到绝对URL
+  //   window.location.href = result
+  // } else {
+    // 如果不是URL，提取最后一个“=”后的值作为货柜ID
+    const lastEqualIndex = result.lastIndexOf('=')
+    const extractedValue = lastEqualIndex >= 0 ? result.substring(lastEqualIndex + 1) : result
+    showToast('扫码成功，跳转货柜')
+    console.log('提取的值:', extractedValue)
+    router.push(`/weimi-points-exchange?cabinetId=${encodeURIComponent(extractedValue)}`)
+  // }
 }
 
 // 扫一扫点击
