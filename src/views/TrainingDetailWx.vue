@@ -1,8 +1,5 @@
 <template>
 <div class="training-detail">
-    <!-- 页面标题栏 -->
-    <xjnn-nav-bar title="培训内容" />
-
     <div class="video-player-container">
       <video  id="videoPlayer" preload="auto" playsinline webkit-playsinline controls></video>
     </div>

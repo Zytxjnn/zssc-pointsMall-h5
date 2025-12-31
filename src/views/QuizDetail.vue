@@ -20,7 +20,7 @@
       <div class="quiz-header">
         <div class="top">
           <div class="left"> {{ quiz.title }}</div>
-          <div class="right">
+          <div class="right" v-if="quiz.trainingId" @click="goToTraining">
             学习关联课件
           </div>
         </div>
@@ -136,7 +136,8 @@ const quiz = ref({
   type: '',
   points: 0,
   passingScore: 0,
-  totalScore: 0
+  totalScore: 0,
+  trainingId: null // 关联的培训ID
 })
 
 // 题目显示数据（用于界面渲染）
@@ -226,7 +227,8 @@ const loadExamDetail = async () => {
       type: examDetail.examTypeName,
       points: examDetail.points,
       passingScore: examDetail.passingScore,
-      totalScore: examDetail.totalScore
+      totalScore: examDetail.totalScore,
+      trainingId: examDetail.trainingId || null // 关联的培训ID
     }
     
     
@@ -311,6 +313,13 @@ const loadExamDetail = async () => {
   }
 }
 
+
+// 跳转到关联的培训页面
+const goToTraining = () => {
+  if (quiz.value.trainingId) {
+    router.push(`/training-detail/${quiz.value.trainingId}`)
+  }
+}
 
 // 提交答卷
 const onSubmitQuiz = async () => {

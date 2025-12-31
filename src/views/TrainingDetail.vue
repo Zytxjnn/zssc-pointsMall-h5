@@ -41,6 +41,10 @@
         <span class="info-value">{{ training.endTime }}</span>
       </div>
       <div class="info-item">
+        <span class="info-label">完成时间:</span>
+        <span class="info-value">{{ training.completeTime || '-' }}</span>
+      </div>
+      <div class="info-item">
         <span class="info-label">类型:</span>
         <span class="info-value">{{ training.type }}</span>
       </div>
@@ -94,6 +98,7 @@ const training = ref({
   duration: '',
   startTime: '',
   endTime: '',
+  completeTime: '', // 完成时间
   status: 'incomplete',
   thumbnail: '',
   description: '',
@@ -147,6 +152,7 @@ const loadTraining = async () => {
       duration: response.totalMinutes ? `${response.totalMinutes}分钟` : '30分钟',
       startTime: '', // 接口中没有开始时间字段
       endTime: response.endTime || '',
+      completeTime: response.completeTime || '', // 完成时间
       status: response.isComplete ? 'completed' : 'incomplete', // 使用isComplete判断完成状态
       thumbnail: response.coverUrl || 'https://fastly.jsdelivr.net/npm/@vant/assets/mountain.jpeg',
       videoCourseName: response.videoCourseName,

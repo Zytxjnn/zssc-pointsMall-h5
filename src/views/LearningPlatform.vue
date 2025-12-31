@@ -64,7 +64,9 @@
         <div class="training-main">
           <!-- 左侧图片占位符 -->
           <div class="training-image">
-            <div class="image-placeholder"></div>
+            <div class="image-placeholder">
+              <span class="video-text">视频</span>
+            </div>
           </div>
           
           <!-- 右侧内容 -->
@@ -419,18 +421,43 @@ onMounted(() => {
   padding: 16px;
   
   .training-image {
-    width: 80px;
-    height: 80px;
-    margin-right: 12px;
-    
-    .image-placeholder {
-      width: 100%;
-      height: 100%;
-      background: #F0F0F0;
-      border-radius: 8px;
-    }
+  width: 80px;
+  height: 80px;
+  margin-right: 12px;
+  position: relative;
   }
-  
+
+.image-placeholder {
+  width: 100%;
+  height: 100%;
+  background: #98aedd;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+.training-image::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 5px;
+  right: -5px;
+  height: 100%;
+  background: #D0D0D0;
+  border-radius: 8px;
+  z-index: 0;
+} 
+
+.video-text {
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: 500;
+  position: relative;
+  z-index: 2;
+}
   .training-content {
     flex: 1;
     

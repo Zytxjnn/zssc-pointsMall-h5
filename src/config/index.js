@@ -3,9 +3,21 @@
 const isDev = import.meta.env.MODE === 'development'
 const API_PORT = '9067'
 
+// 支持通过环境变量覆盖API地址，确保使用HTTPS协议
+const getApiBaseURL = () => {
+  // 优先使用环境变量中的API地址
+  if (import.meta.env.VITE_API_BASE_URL) {
+    const url = import.meta.env.VITE_API_BASE_URL
+    // 确保使用HTTPS协议，避免混合内容错误
+    return url.startsWith('http://') ? url.replace('http://', 'https://') : url
+  }
+  // 使用新的API地址，确保使用HTTPS协议
+  return `https://psapi.yiqiantu.com/api`
+}
+
 export const config = {
-  // API基础URL
-  apiBaseURL: `https://psapi.yiqiantu.com/api`,
+  // API基础URL - 使用HTTPS协议避免混合内容错误
+  apiBaseURL: getApiBaseURL(),
   
   // 请求超时时间
   timeout: 10000,

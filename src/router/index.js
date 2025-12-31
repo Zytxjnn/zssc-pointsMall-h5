@@ -129,7 +129,7 @@ const routes = [
     name: 'TrainingDetailWx',
     component: () => import('@/views/TrainingDetailWx.vue'),
     meta: {
-      title: '培训内容（微信）'
+      title: '培训内容'
     }
   },
   {

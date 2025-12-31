@@ -62,9 +62,11 @@
       >
         <!-- 上半部分：主要内容 -->
         <div class="quiz-main">
-          <!-- 左侧图片占位符 -->
+          <!-- 左侧文字预览图 -->
           <div class="quiz-image">
-            <div class="image-placeholder"></div>
+            <div class="image-placeholder">
+              <span class="quiz-text">答题</span>
+            </div>
           </div>
           
           <!-- 右侧内容 -->
@@ -475,15 +477,43 @@ onMounted(() => {
       margin-bottom: 12px;
 
       .quiz-image {
+        width: 80px;
+        height: 80px;
         margin-right: 12px;
+        position: relative;
         flex-shrink: 0;
 
         .image-placeholder {
-          width: 60px;
-          height: 60px;
-          background: #f0f0f0;
-          border-radius: 6px;
+          width: 100%;
+          height: 100%;
+          background: #98aedd;
+          border-radius: 8px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: relative;
+          z-index: 1;
         }
+      }
+
+      .quiz-image::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 5px;
+        right: -5px;
+        height: 100%;
+        background: #D0D0D0;
+        border-radius: 8px;
+        z-index: 0;
+      }
+
+      .quiz-text {
+        color: #ffffff;
+        font-size: 24px;
+        font-weight: 500;
+        position: relative;
+        z-index: 2;
       }
 
       .quiz-content {
